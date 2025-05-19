@@ -1,9 +1,8 @@
-# Unpinned blobs from picasso-user 12 RKQ1.200826.002 V13.0.5.0.SGICNXM release-keys
+# Unpinned blobs from munch-user 14 RKQ1.211001.001 OS1.0.8.0.ULMMIXM release-keys
 
 # MIUI Camera
-system/etc/public.libraries-xiaomi.txt
-system/lib64/libcamera_algoup_jni.xiaomi.so
-system/lib64/libcamera_mianode_jni.xiaomi.so
-system/lib64/libcamera_jpegutil_jni.xiaomi.so
+system_ext/lib64/libcamera_algoup_jni.xiaomi.so:system/lib64/libcamera_algoup_jni.xiaomi.so
+system_ext/lib64/libcamera_mianode_jni.xiaomi.so:system/lib64/libcamera_mianode_jni.xiaomi.so
+system_ext/lib64/libmicampostproc_client.so:system/lib64/libmicampostproc_client.so
+system_ext/lib64/vendor.xiaomi.hardware.campostproc@1.0.so:system/lib64/vendor.xiaomi.hardware.campostproc@1.0.so
 system/priv-app/MiuiCamera/MiuiCamera.apk;OVERRIDES=GrapheneCamera,Camera,Camera2,Aperture,GoogleCameraGo|5cbf6b4eb1ce503c06cda7e544c2bb5d5f706e46
-vendor/etc/camera/sceneDetection.xml

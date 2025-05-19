@@ -20,9 +20,19 @@ from extract_utils.main import (
     ExtractUtilsModule,
 )
 
+blob_fixups: blob_fixups_user_type = {
+    'system/lib64/libcamera_algoup_jni.xiaomi.so': blob_fixup()
+        .add_needed('libgui_shim_miuicamera.so'),
+    'system/lib64/libcamera_mianode_jni.xiaomi.so': blob_fixup()
+        .add_needed('libgui_shim_miuicamera.so'),
+    'system/lib64/libmicampostproc_client.so': blob_fixup()
+        .remove_needed('libhidltransport.so'),
+}  # fmt: skip
+
 module = ExtractUtilsModule(
     "common",
     "xiaomi/camera",
+    blob_fixups=blob_fixups,
     device_rel_path="vendor/xiaomi/camera",
     check_elf=True,
 )
