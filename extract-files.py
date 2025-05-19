@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+import os
 from extract_utils.file import File
 from extract_utils.fixups_blob import (
     BlobFixupCtx,
@@ -19,6 +20,30 @@ from extract_utils.main import (
     ExtractUtils,
     ExtractUtilsModule,
 )
+from extract_utils.tools import (
+    apktool_path,
+    java_path,
+)
+from extract_utils.utils import run_cmd
+
+def apktool_pack(input_dir: str, apk_path: str) -> None:
+    if not os.path.exists(input_dir):
+        raise FileNotFoundError(f"Input directory {input_dir} does not exist.")
+    if os.path.exists(apk_path):
+        os.remove(apk_path)
+
+    print(f"Packing {input_dir} to {apk_path} using apktool...")
+    run_cmd(
+        [
+            java_path,
+            '-jar',
+            apktool_path,
+            'b',
+            input_dir,
+            '-o',
+            apk_path,
+        ],
+    )
 
 blob_fixups: blob_fixups_user_type = {
     'system/lib64/libcamera_algoup_jni.xiaomi.so': blob_fixup()
@@ -41,3 +66,7 @@ module = ExtractUtilsModule(
 if __name__ == '__main__':
     utils = ExtractUtils.device(module)
     utils.run()
+    apktool_pack(
+        input_dir="../../../MiuiCamera-smali",
+        apk_path="common/proprietary/system/priv-app/MiuiCamera/MiuiCamera.apk",
+    )
